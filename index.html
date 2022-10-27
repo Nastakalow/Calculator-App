@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Calculator app</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>calc</h1>
+        <div class="theme-content">
+          <div class="switch-content">
+            <div class="switch-label">
+              <p>1</p>
+              <p>2</p>
+              <p>3</p>
+            </div>
+            <div class="switch-toggle switch-3 switch-candy">
+              <h2>theme</h2>
+              <input id="on" name="state-d" type="radio" checked="checked" />
+              <label for="on" onclick=""></label>
+
+              <input id="na" name="state-d" type="radio" />
+              <label for="na" class="disabled" onclick=""></label>
+
+              <input id="off" name="state-d" type="radio" />
+              <label for="off" onclick=""></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="display-content">
+        <h3>399,981</h3>
+      </div>
+      <div class="main-content">
+        <div class="numbers">
+          <button>7</button>
+          <button>8</button>
+          <button>9</button>
+          <button>DEL</button>
+        </div>
+        <div class="numbers">
+          <button>4</button>
+          <button>5</button>
+          <button>6</button>
+          <button>+</button>
+        </div>
+        <div class="numbers">
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>-</button>
+        </div>
+        <div class="numbers">
+          <button>.</button>
+          <button>0</button>
+          <button>/</button>
+          <button>x</button>
+        </div>
+        <div class="resetAndEqual">
+          <button>RESET</button>
+          <button>=</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
