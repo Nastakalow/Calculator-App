@@ -12,6 +12,8 @@
     />
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/app.js" defer></script>
     <title>Calculator app</title>
   </head>
   <body>
@@ -25,51 +27,56 @@
               <p>2</p>
               <p>3</p>
             </div>
-            <div class="switch-toggle switch-3 switch-candy">
+            <div class="switch-toggle">
               <h2>theme</h2>
-              <input id="on" name="state-d" type="radio" checked="checked" />
-              <label for="on" onclick=""></label>
+              <input
+                id="themeOne"
+                name="state-d"
+                type="radio"
+                checked="checked"
+              />
+              <label for="themeOne" onclick=""></label>
 
-              <input id="na" name="state-d" type="radio" />
-              <label for="na" class="disabled" onclick=""></label>
+              <input id="themeTwo" name="state-d" type="radio" />
+              <label for="themeTwo" class="disabled" onclick=""></label>
 
-              <input id="off" name="state-d" type="radio" />
-              <label for="off" onclick=""></label>
+              <input id="themeThree" name="state-d" type="radio" />
+              <label for="themeThree" onclick=""></label>
             </div>
           </div>
         </div>
       </div>
       <div class="display-content">
-        <h3>399,981</h3>
+        <h3>0</h3>
       </div>
       <div class="main-content">
         <div class="numbers">
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>DEL</button>
+          <button class="keys-btn">7</button>
+          <button class="keys-btn">8</button>
+          <button class="keys-btn">9</button>
+          <button class="keys-btn">DEL</button>
         </div>
         <div class="numbers">
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>+</button>
+          <button class="keys-btn">4</button>
+          <button class="keys-btn">5</button>
+          <button class="keys-btn">6</button>
+          <button class="keys-btn">+</button>
         </div>
         <div class="numbers">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>-</button>
+          <button class="keys-btn">1</button>
+          <button class="keys-btn">2</button>
+          <button class="keys-btn">3</button>
+          <button class="keys-btn">-</button>
         </div>
         <div class="numbers">
-          <button>.</button>
-          <button>0</button>
-          <button>/</button>
-          <button>x</button>
+          <button class="keys-btn">.</button>
+          <button class="keys-btn">0</button>
+          <button class="keys-btn">/</button>
+          <button class="keys-btn">x</button>
         </div>
         <div class="resetAndEqual">
-          <button>RESET</button>
-          <button>=</button>
+          <button class="keys-btn">RESET</button>
+          <button class="keys-btn">=</button>
         </div>
       </div>
     </div>

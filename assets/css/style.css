@@ -11,7 +11,31 @@ html {
 }
 
 body {
-  background-color: hsl(222, 26%, 31%);
+  /*backgrounds*/
+  --bg-display: hsl(224, 36%, 15%);
+  --bg-main: hsl(222, 26%, 31%);
+  --bg-keypad: hsl(223, 31%, 20%);
+
+  /*keys*/
+  --key-del-reset: hsl(225, 21%, 49%);
+  --key-del-reset-shadow: hsl(224, 28%, 35%);
+  --key-del-reset-hover: hsl(226, 20%, 75%);
+
+  --key-switch-equal: hsl(6, 63%, 50%);
+  --key-switch-equal-hover: hsl(6, 63%, 60%);
+  --key-switch-equal-shadow: hsl(6, 70%, 34%);
+
+  --key-numbers: hsl(30, 25%, 89%);
+  --key-numbers-shadow: hsl(28, 16%, 65%);
+  --key-numbers-hover: hsl(0, 0%, 100%);
+
+  /*text*/
+  --text-key: hsl(221, 14%, 31%);
+  --text-header-display: hsl(0, 0%, 100%);
+  --text-equal: hsl(0, 0%, 100%);
+  --text-white: hsl(0, 0%, 100%);
+
+  background-color: var(--bg-main);
   height: 100vh;
   display: flex;
   align-items: center;
@@ -19,14 +43,64 @@ body {
   font-family: "League Spartan", sans-serif;
 }
 
+.theme-two {
+  /*backgrounds*/
+  --bg-display: hsl(0, 0%, 93%);
+  --bg-main: hsl(0, 0%, 90%);
+  --bg-keypad: hsl(0, 5%, 81%);
+
+  /*keys*/
+  --key-del-reset: hsl(185, 42%, 37%);
+  --key-del-reset-hover: hsl(185, 24%, 56%);
+  --key-del-reset-shadow: hsl(185, 58%, 25%);
+
+  --key-switch-equal: hsl(25, 98%, 40%);
+  --key-switch-equal-hover: hsl(25, 65%, 52%);
+  --key-switch-equal-shadow: hsl(25, 99%, 27%);
+
+  --key-numbers: hsl(45, 7%, 89%);
+  --key-numbers-hover: hsl(0, 0%, 100%);
+  --key-numbers-shadow: hsl(35, 11%, 61%);
+
+  /*text*/
+  --text-key: hsl(60, 10%, 19%);
+  --text-header-display: hsl(60, 10%, 19%);
+  --text-equal: hsl(0, 0%, 100%);
+  --text-white: hsl(0, 0%, 100%);
+}
+
+.theme-three {
+  /*backgrounds*/
+  --bg-display: hsl(268, 71%, 12%);
+  --bg-main: hsl(268, 75%, 9%);
+  --bg-keypad: hsl(268, 71%, 12%);
+
+  /*keys*/
+  --key-del-reset: hsl(281, 89%, 26%);
+  --key-del-reset-hover: hsl(281, 46%, 41%);
+  --key-del-reset-shadow: hsl(285, 91%, 52%);
+
+  --key-switch-equal: hsl(176, 100%, 44%);
+  --key-switch-equal-hover: #7fefe8;
+  --key-switch-equal-shadow: hsl(177, 92%, 70%);
+
+  --key-numbers: hsl(268, 47%, 21%);
+  --key-numbers-hover: hsl(268, 58%, 37%);
+  --key-numbers-shadow: hsl(290, 70%, 36%);
+
+  /*text*/
+  --text-key: hsl(52, 100%, 62%);
+  --text-header-display: hsl(52, 100%, 62%);
+  --text-equal: hsl(198, 20%, 13%);
+  --text-white: hsl(0, 0%, 100%);
+}
+
 .container {
   width: 37rem;
-  /* border: 1px solid red; */
 }
 
 .header {
-  /* border: 1px solid yellow; */
-  color: #fff;
+  color: var(--text-header-display);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -34,7 +108,7 @@ body {
 }
 
 .header h1 {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 700;
 }
 
@@ -45,12 +119,6 @@ body {
   gap: 3rem;
 }
 
-.theme-content h2 {
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
 .switch-label {
   display: flex;
   justify-content: space-evenly;
@@ -59,45 +127,56 @@ body {
 .switch-toggle {
   position: relative;
   float: left;
-  background: #242729;
-  padding: 0.3rem;
+  background: var(--bg-keypad);
+  padding: 0.4rem;
   border-radius: 1.2rem;
-  width: 3.6rem;
+  width: 4rem;
   margin-top: 0.3rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .switch-toggle h2 {
   position: absolute;
-  top: 0.4rem;
-  left: -3.6rem;
+  top: 0.5rem;
+  left: -4rem;
+
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  font-weight: 500;
 }
 
 .switch-toggle input {
   position: absolute;
+  top: 3rem;
+  left: 3rem;
   opacity: 0;
 }
+
 .switch-toggle input + label {
-  padding: 5px;
+  padding: 0.5rem;
   border-radius: 50%;
   float: left;
-  color: #fff;
   cursor: pointer;
 }
+
 .switch-toggle input:checked + label {
-  background: hsl(25, 98%, 40%);
+  background: var(--key-switch-equal);
+}
+
+.switch-toggle input:checked + label:hover {
+  background-color: var(--key-switch-equal-hover);
 }
 
 .display-content {
-  /* border: 1px solid blue; */
   text-align: end;
   padding: 1.8rem 1.4rem;
   margin: 1.2rem 0;
   font-size: 3.6rem;
   font-weight: 500;
-  color: #fff;
-  background-color: hsl(224, 36%, 15%);
+  color: var(--text-header-display);
+  background-color: var(--bg-display);
   border-radius: 0.8rem;
 }
 
@@ -106,7 +185,7 @@ body {
   display: flex;
   flex-direction: column;
   row-gap: 1.4rem;
-  background-color: hsl(223, 31%, 20%);
+  background-color: var(--bg-display);
   border-radius: 0.8rem;
 }
 
@@ -120,16 +199,20 @@ button {
   font-size: 2.6rem;
   padding: 1.2rem;
   font-weight: 700;
-  background-color: hsl(45, 7%, 89%);
   border: none;
   border-radius: 0.8rem;
-  box-shadow: hsl(28, 16%, 65%) 0px -2px 0px inset;
   cursor: pointer;
 }
 
 .numbers button {
   width: 6.77rem;
-  color: hsl(221, 14%, 31%);
+  color: var(--text-key);
+  background-color: var(--key-numbers);
+  box-shadow: var(--key-numbers-shadow) 0px -2px 0px inset;
+}
+
+.numbers button:hover {
+  background-color: var(--key-numbers-hover);
 }
 
 .resetAndEqual {
@@ -139,29 +222,46 @@ button {
 
 .resetAndEqual button {
   flex: 1;
-  color: #fff;
-  font-size: 2rem;
-}
-
-.main-content div:first-child button:last-child {
-  background-color: hsl(225, 21%, 49%);
-  box-shadow: hsl(224, 28%, 35%) 0px -2px 0px inset;
-  color: #fff;
-  font-size: 2rem;
-}
-
-.resetAndEqual button:first-child {
-  background-color: hsl(225, 21%, 49%);
-  box-shadow: hsl(224, 28%, 35%) 0px -2px 0px inset;
 }
 
 .resetAndEqual button:last-child {
-  background-color: hsl(6, 63%, 50%);
-  box-shadow: hsl(6, 70%, 34%) 0px -2px 0px inset;
+  color: var(--text-equal);
+}
+
+.main-content div:first-child button:last-child,
+.resetAndEqual button {
+  color: var(--text-white);
+  font-size: 2rem;
+}
+
+.resetAndEqual button:first-child,
+.main-content div:first-child button:last-child {
+  background-color: var(--key-del-reset);
+  box-shadow: var(--key-del-reset-shadow) 0px -2px 0px inset;
+}
+
+.resetAndEqual button:first-child:hover,
+.main-content div:first-child button:last-child:hover {
+  background-color: var(--key-del-reset-hover);
+}
+
+.resetAndEqual button:last-child {
+  background-color: var(--key-switch-equal);
+  box-shadow: var(--key-switch-equal-shadow) 0px -2px 0px inset;
+}
+
+.resetAndEqual button:last-child:hover {
+  background-color: var(--key-switch-equal-hover);
 }
 
 @media only screen and (max-width: 375px) {
   html {
     font-size: 50%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  html {
+    font-size: 68.75%;
   }
 }
