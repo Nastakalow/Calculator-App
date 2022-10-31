@@ -9,7 +9,6 @@ $(document).ready(function () {
   let resultDel;
   let isOperator = false;
   let zeroDivided = false;
-  let floatNode = false;
 
   $(".keys-btn").on("click", parseNumber);
 
@@ -30,8 +29,6 @@ $(document).ready(function () {
         firstStr += num;
         displayStr = firstStr;
       }
-    } else if (num == "DEL") {
-      displayStr = resultDel;
     }
 
     $(".display-content h3").html(displayStr);
@@ -66,6 +63,8 @@ $(document).ready(function () {
         displayStr = firstStr + num;
       }
       $(".display-content h3").html(displayStr);
+    } else if (num == "DEL") {
+      displayStr = resultDel;
     } else {
       showResult(num);
       return;
@@ -78,34 +77,43 @@ $(document).ready(function () {
 
   function showResult(num) {
     if (num == "=") {
-      if (resultCompute > 999999999) {
+      if (resultCompute % 1 != 0 && isRepeatingFloat(resultCompute)) {
+        resultCompute = parseFloat(Number(resultCompute).toFixed(5));
+      } else if (resultCompute > 999999999) {
         resultCompute = resultCompute.toExponential();
         displayStr = resultCompute;
-      } else if (typeof resultCompute != "string" && resultCompute % 1 === 0) {
-        resultCompute += "";
-        if (resultCompute.length >= 4) {
-          resultCompute = resultCompute.split("");
-          resultCompute.splice(-3, 0, ",");
-          if (resultCompute.length > 7 && parseInt(resultCompute) >= -100000) {
-            resultCompute.splice(-7, 0, ",");
-          }
-          resultCompute = resultCompute.join("");
-        }
       } else if (
         resultCompute == 0.30000000000000004 ||
         resultCompute == 0.7999999999999999
       ) {
         resultCompute = parseFloat(Number(resultCompute).toFixed(2));
-      } else {
-        resultCompute += "";
-        resultCompute = resultCompute.replace(",", "");
       }
-      firstStr = resultCompute.replaceAll(",", "");
-      firstNum = resultCompute.replaceAll(",", "");
+      firstStr = resultCompute.toString();
+      firstNum = resultCompute.toString();
       $(".display-content h3").html(resultCompute);
 
       resetAll();
     }
+  }
+
+  function isRepeatingFloat(result) {
+    let count;
+    let floatNumber = result - Math.floor(result);
+    floatNumber += "";
+
+    for (let i = 0; i < floatNumber.length; i++) {
+      count = 0;
+      for (let j = i + 1; j < floatNumber.length; j++) {
+        if (floatNumber[i] == floatNumber[j]) {
+          count++;
+        } else if (count < 4) {
+          break;
+        } else if (count == 4) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   function parseNumber() {
@@ -126,22 +134,31 @@ $(document).ready(function () {
       resultDel = deleteNumber();
     } else if (buttonPressed == "RESET") {
       resetAll();
-    } else if (buttonPressed == "." && !floatNode) {
-      floatNode = true;
     }
 
+    setNumbers(buttonPressed);
+  }
+
+  function setNumbers(buttonPressed) {
     if (
       !isOperator &&
       buttonPressed != "+" &&
       buttonPressed != "-" &&
       buttonPressed != "x" &&
       buttonPressed != "/" &&
-      (buttonPressed != "0" || firstNum) &&
-      floatNode
+      (buttonPressed != "0" ||
+        parseFloat(firstNum) !== 0 ||
+        firstStr.includes(".")) &&
+      (buttonPressed != "." || !firstStr.includes(".") || !firstStr)
     ) {
       firstNum = getFirstNum(buttonPressed);
-      // floatNode = ;
-    } else if (isOperator && (buttonPressed != "0" || secondNum)) {
+    } else if (
+      isOperator &&
+      (buttonPressed != "0" ||
+        parseFloat(secondNum) !== 0 ||
+        secondStr.includes(".")) &&
+      (buttonPressed != "." || !secondStr.includes(".") || !secondStr)
+    ) {
       secondNum = getSecondNum(buttonPressed);
     }
   }
