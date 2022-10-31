@@ -13,7 +13,10 @@ $(document).ready(function () {
   $(".keys-btn").on("click", parseNumber);
 
   function getFirstNum(num) {
-    if (
+    if (num == "." && !firstStr) {
+      firstStr = "0" + num;
+      displayStr = firstStr;
+    } else if (
       num != "DEL" &&
       num != "RESET" &&
       num != "=" &&
@@ -36,7 +39,10 @@ $(document).ready(function () {
   }
 
   function getSecondNum(num) {
-    if (
+    if (num == "." && !secondStr) {
+      secondStr = "0" + num;
+      displayStr = displayStr + "0" + num;
+    } else if (
       num != "DEL" &&
       num != "RESET" &&
       num != "=" &&
@@ -60,7 +66,10 @@ $(document).ready(function () {
       }
       $(".display-content h3").html(displayStr);
     } else if (num == "=") {
-      if (!zeroDivided) {
+      if (resultCompute > 999999999) {
+        resultCompute = resultCompute.toExponential();
+        displayStr = resultCompute;
+      } else if (typeof resultCompute != "string" && resultCompute % 1 === 0) {
         resultCompute += "";
         if (resultCompute.length >= 4) {
           resultCompute = resultCompute.split("");
@@ -70,11 +79,18 @@ $(document).ready(function () {
           }
           resultCompute = resultCompute.join("");
         }
+      } else if (
+        resultCompute == 0.30000000000000004 ||
+        resultCompute == 0.7999999999999999
+      ) {
+        resultCompute = parseFloat(Number(resultCompute).toFixed(2));
+      } else {
+        resultCompute += "";
+
+        resultCompute = resultCompute.replace(",", "");
+        firstNum = resultCompute;
       }
       $(".display-content h3").html(resultCompute);
-
-      resultCompute = resultCompute.replace(",", "");
-      firstNum = resultCompute;
 
       resetAll();
       return;
@@ -134,7 +150,8 @@ $(document).ready(function () {
         return parseFloat(a) / parseFloat(b);
       }
     } else {
-      return "not a number";
+      zeroDivided = false;
+      return "NaN";
     }
   }
 
