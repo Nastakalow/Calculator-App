@@ -89,8 +89,8 @@ $(document).ready(function () {
 
         resultCompute = resultCompute.replace(",", "");
       }
-      firstStr = resultCompute;
-      firstNum = resultCompute;
+      firstStr = resultCompute.replaceAll(",", "");
+      firstNum = resultCompute.replaceAll(",", "");
       $(".display-content h3").html(resultCompute);
 
       resetAll();
