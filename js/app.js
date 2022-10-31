@@ -25,7 +25,7 @@ $(document).ready(function () {
       num != "x" &&
       num != "/"
     ) {
-      if (firstStr.length <= 7) {
+      if (firstStr.length <= 8) {
         firstStr += num;
         displayStr = firstStr;
       }
@@ -51,7 +51,7 @@ $(document).ready(function () {
       num != "x" &&
       num != "/"
     ) {
-      if (secondStr.length <= 7) {
+      if (secondStr.length <= 8) {
         secondStr += num;
         displayStr += num;
       }
@@ -88,8 +88,9 @@ $(document).ready(function () {
         resultCompute += "";
 
         resultCompute = resultCompute.replace(",", "");
-        firstNum = resultCompute;
       }
+      firstStr = resultCompute;
+      firstNum = resultCompute;
       $(".display-content h3").html(resultCompute);
 
       resetAll();
