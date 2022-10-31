@@ -9,6 +9,7 @@ $(document).ready(function () {
   let resultDel;
   let isOperator = false;
   let zeroDivided = false;
+  let floatNode = false;
 
   $(".keys-btn").on("click", parseNumber);
 
@@ -65,7 +66,18 @@ $(document).ready(function () {
         displayStr = firstStr + num;
       }
       $(".display-content h3").html(displayStr);
-    } else if (num == "=") {
+    } else {
+      showResult(num);
+      return;
+    }
+
+    $(".display-content h3").html(displayStr);
+
+    return secondStr;
+  }
+
+  function showResult(num) {
+    if (num == "=") {
       if (resultCompute > 999999999) {
         resultCompute = resultCompute.toExponential();
         displayStr = resultCompute;
@@ -74,7 +86,7 @@ $(document).ready(function () {
         if (resultCompute.length >= 4) {
           resultCompute = resultCompute.split("");
           resultCompute.splice(-3, 0, ",");
-          if (resultCompute.length > 7) {
+          if (resultCompute.length > 7 && parseInt(resultCompute) >= -100000) {
             resultCompute.splice(-7, 0, ",");
           }
           resultCompute = resultCompute.join("");
@@ -86,7 +98,6 @@ $(document).ready(function () {
         resultCompute = parseFloat(Number(resultCompute).toFixed(2));
       } else {
         resultCompute += "";
-
         resultCompute = resultCompute.replace(",", "");
       }
       firstStr = resultCompute.replaceAll(",", "");
@@ -94,12 +105,7 @@ $(document).ready(function () {
       $(".display-content h3").html(resultCompute);
 
       resetAll();
-      return;
     }
-
-    $(".display-content h3").html(displayStr);
-
-    return secondStr;
   }
 
   function parseNumber() {
@@ -120,6 +126,8 @@ $(document).ready(function () {
       resultDel = deleteNumber();
     } else if (buttonPressed == "RESET") {
       resetAll();
+    } else if (buttonPressed == "." && !floatNode) {
+      floatNode = true;
     }
 
     if (
@@ -128,10 +136,12 @@ $(document).ready(function () {
       buttonPressed != "-" &&
       buttonPressed != "x" &&
       buttonPressed != "/" &&
-      (buttonPressed != "0" || firstNum)
+      (buttonPressed != "0" || firstNum) &&
+      floatNode
     ) {
       firstNum = getFirstNum(buttonPressed);
-    } else if (isOperator) {
+      // floatNode = ;
+    } else if (isOperator && (buttonPressed != "0" || secondNum)) {
       secondNum = getSecondNum(buttonPressed);
     }
   }
@@ -157,27 +167,18 @@ $(document).ready(function () {
   }
 
   function deleteNumber() {
-    if (displayStr.length == 1) {
-      displayStr = displayStr.slice(0, -1);
-      if (secondStr) {
-        secondStr = secondStr.slice(0, -1);
-      } else if (operator) {
-        operator = operator.slice(0, -1);
-        isOperator = false;
-      } else {
-        firstStr = firstStr.slice(0, -1);
-      }
-      return "0";
-    } else if (displayStr !== "0") {
-      displayStr = displayStr.slice(0, -1);
-      if (secondStr) {
-        secondStr = secondStr.slice(0, -1);
-      } else if (operator) {
-        operator = operator.slice(0, -1);
-        isOperator = false;
-      } else {
-        firstStr = firstStr.slice(0, -1);
-      }
+    displayStr = displayStr.slice(0, -1);
+    if (secondStr) {
+      secondStr = secondStr.slice(0, -1);
+    } else if (operator) {
+      operator = operator.slice(0, -1);
+      isOperator = false;
+    } else {
+      firstStr = firstStr.slice(0, -1);
+    }
+
+    if (displayStr.length <= 1) {
+      displayStr = "0";
     }
 
     return displayStr;
