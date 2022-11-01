@@ -8,7 +8,6 @@ $(document).ready(function () {
   let resultCompute;
   let resultDel;
   let isOperator = false;
-  let zeroDivided = false;
 
   $(".keys-btn").on("click", parseNumbers);
 
@@ -174,7 +173,6 @@ $(document).ready(function () {
     } else if (operator == "x") {
       return parseFloat(a) * parseFloat(b);
     } else if (operator == "/" && b == "0") {
-      zeroDivided = true;
       return "can't divide by zero";
     } else {
       return parseFloat(a) / parseFloat(b);
@@ -209,7 +207,6 @@ $(document).ready(function () {
     resultCompute;
     resultDel;
     isOperator = false;
-    zeroDivided = false;
   }
 
   changeTheme();
