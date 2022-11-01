@@ -206,7 +206,12 @@ $(document).ready(function () {
     secondStr = "";
     displayStr = "0";
     operator = "";
+    firstNum;
+    secondNum;
+    resultCompute;
+    resultDel;
     isOperator = false;
+    zeroDivided = false;
   }
 
   changeTheme();
