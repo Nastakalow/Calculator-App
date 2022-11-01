@@ -4,4 +4,4 @@
 
 - [Demo](https://nastakalow.github.io/Calculator-App/)
 
-Frontend Mentor challenges help you improve your coding skills by building realistic projects. Thanks a lot [Frontend Mentor](https://www.frontendmentor.io) ❤.
+Frontend Mentor challenges help to improve coding skills by building realistic projects. Thanks a lot [Frontend Mentor](https://www.frontendmentor.io) ❤.
