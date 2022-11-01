@@ -10,7 +10,7 @@ $(document).ready(function () {
   let isOperator = false;
   let zeroDivided = false;
 
-  $(".keys-btn").on("click", parseNumber);
+  $(".keys-btn").on("click", parseNumbers);
 
   function getFirstNum(num) {
     if (num == "." && !firstStr) {
@@ -117,7 +117,7 @@ $(document).ready(function () {
     return false;
   }
 
-  function parseNumber() {
+  function parseNumbers() {
     let buttonPressed = $(this).html();
     if (
       (buttonPressed == "+" ||
@@ -165,22 +165,19 @@ $(document).ready(function () {
   }
 
   function computeNumbers(a, b, operator) {
-    if (!zeroDivided) {
-      if (operator == "+") {
-        return parseFloat(a) + parseFloat(b);
-      } else if (operator == "-") {
-        return parseFloat(a) - parseFloat(b);
-      } else if (operator == "x") {
-        return parseFloat(a) * parseFloat(b);
-      } else if (operator == "/" && b == "0") {
-        zeroDivided = true;
-        return "can't divide by zero";
-      } else {
-        return parseFloat(a) / parseFloat(b);
-      }
-    } else {
-      zeroDivided = false;
+    if (!(a - 1) || !(b - 1)) {
       return "NaN";
+    } else if (operator == "+") {
+      return parseFloat(a) + parseFloat(b);
+    } else if (operator == "-") {
+      return parseFloat(a) - parseFloat(b);
+    } else if (operator == "x") {
+      return parseFloat(a) * parseFloat(b);
+    } else if (operator == "/" && b == "0") {
+      zeroDivided = true;
+      return "can't divide by zero";
+    } else {
+      return parseFloat(a) / parseFloat(b);
     }
   }
 
