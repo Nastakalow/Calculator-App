@@ -108,7 +108,8 @@ $(document).ready(function () {
           count++;
         } else if (count < 4) {
           break;
-        } else if (count == 4) {
+        }
+        if (count == 4) {
           return true;
         }
       }
