@@ -1,4 +1,4 @@
-# Frontend Mentor - Calculator app
+# Frontend Mentor - REST Countries API
 
 ![image](https://user-images.githubusercontent.com/102714303/199200987-f80f1ab2-0835-4ba9-be64-575e45618a6d.png)
 
